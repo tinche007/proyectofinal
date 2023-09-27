@@ -1,0 +1,35 @@
+{% extends "app1/padre_lugares.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">¡Bienvenido a Buenos Aires!</h1>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Testimonials-->
+<section class="testimonials text-center bg-light">
+    <div class="container">
+        <h2 class="mb-5">Recomendaciones para viajar</h2>
+        <div class="row">
+            {% for comment in comments %}
+            <div class="col-lg-4">
+                <div class="testimonial-item mx-auto mb-5 mb-lg-0">
+                    <img class="img-fluid rounded-circle mb-3" src="{{ comment.user_image.url }}" alt="{{ comment.author }} Profile Image">
+                    <h5>{{ comment.author }}</h5>
+                    <p class="font-weight-light mb-0">{{ comment.content }}</p> #en views esta la def para la caja de comentarios
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

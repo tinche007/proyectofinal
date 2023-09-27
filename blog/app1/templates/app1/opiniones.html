@@ -1,0 +1,47 @@
+{% extends "app1/padre_lugares.html" %}
+{% load static %}
+{% block contenidoQueCambia %}
+
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">¡Bienvenido a Buenos Aires!</h1>
+                    <!-- Otras partes del encabezado si las hay -->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Testimonials (Opiniones existentes) -->
+<h1>{{ buenos_aires.nombre }}</h1>
+<p>{{ buenos_aires.descripcion }}</p>
+<img src="{{ provincia.imagen.url }}" alt="{{ buenos_aires.nombre }}">
+
+<h1>Opiniones</h1>
+
+<ul>
+    {% regroup opinion by provincia as opinions_by_provincia %}
+    {% for provincia_group in opinions_by_provincia %}
+        <li>{{ provincia_group.grouper }}
+            <ul>
+                {% for opinion_instance in provincia_group.list %}
+                    <li>{{ opinion_instance.lugar_turistico }} - {{ opinion_instance.comentario }}</li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<h2>Deja tu opinión</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Enviar</button>
+</form>
+
+
+{% endblock %}

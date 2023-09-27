@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+
+        {% load static %}
+        <style>
+            .avatar-container {
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+        overflow: hidden;
+        }
+
+        .avatar-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        </style>
+
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Argentravel</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'app1/css/styles.css' %}" rel="stylesheet" />
+    </head>
+    <body>
+        <!-- Navigation-->
+        <nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+
+                {% if request.user.is_authenticated %}
+                {% if request.user.avatar_set.first %}
+                    <div class="avatar-container">
+                        <img src="{{ request.user.avatar_set.first.imagen.url }}" class="avatar-image" />
+                    </div>
+                {% endif %}
+                <p class="text-muted small mb-4 mb-lg-0">{{ request.user.username }}</p>
+                {% endif %}
+
+                <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
+                <a class="navbar-brand" href="{% url 'provincias' %}">Provincias</a>
+                <a class="navbar-brand" href="{% url 'opiniones' %}">Opiniones</a>
+                {% if not request.user.is_authenticated %}
+                    <a class="btn btn-primary" href="{% url 'registro' %}">Sign Up</a>
+                    <a class="btn btn-primary" href="{% url 'login' %}">Log In</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'perfil' %}">Perfil</a>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Cerrar sesión</a>
+                {% endif %}
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6">
+                        <div class="text-center text-white">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">¿A que provincia deseas ir?</h1>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <!-- Icons Grid-->
+        <section class="features-icons bg-light text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://cloudfront-us-east-1.images.arcpublishing.com/infobae/Q65VXWNN2FEVNN4QOLAKSC7J5E.jpg" alt="..." />
+                            <h3>Buenos Aires</h3>
+                            
+                            <p class="lead mb-0">Conoce sus distintos puntos turisticos llenos de historia.<br></br>
+                            <a href="{% url 'opiniones' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://i0.wp.com/diariosanrafael.com.ar/wp-content/uploads/2022/07/turismo-mendoza.jpg?fit=1600%2C1067&ssl=1" alt="..." />
+                            <h3>Mendoza</h3>
+                            <p class="lead mb-0">Montañas, lagos, ríos y un buen vino te esperan en Mendoza.<br></br>
+                            <a href="{% url 'opiniones' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://www.tiempoar.com.ar/wp-content/uploads/2022/07/web-ski-catedrAL.jpg" alt="..." />
+                            <h3>Río Negro</h3>
+                            <p class="lead mb-0">Lagos, montañas, nieve, reservas naturales. Todo junto en Río Negro.<br></br>
+                            <a href="{% url 'opiniones' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://noticiascordoba.com/wp-content/uploads/2020/01/1%C2%BA_0Vut1Yv.jpg" alt="..." />
+                            <h3>Córdobas</h3>
+                            <p class="lead mb-0">Shows, cuarteto y fernet en medio de las sierras y ríos.<br></br>
+                            <a href="{% url 'no_hay_pagina_aun' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://upload.wikimedia.org/wikipedia/commons/9/97/Foz_de_Igua%C3%A7u_27_Panorama_Nov_2005.jpg" alt="..." />
+                            <h3>Misiones</h3>
+                            <p class="lead mb-0">La garganta del diablo te espera en Misiones.<br></br>
+                            <a href="{% url 'no_hay_pagina_aun' %}">+Info</a><br></br>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://www.thewanders.eu/wp-content/uploads/2019/05/lel2.jpg" alt="..." />
+                            <h3>Tierra del Fuego</h3>
+                            <p class="lead mb-0">El frío y la nieve van de la mano con el fin del mundo.<br></br>
+                            <a href="{% url 'no_hay_pagina_aun' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://rutasysabores.com.ar/wp-content/uploads/2021/07/SantaFe.jpg" alt="..." />
+                            <h3>Santa Fe</h3>
+                            <p class="lead mb-0">El pueblo Santafesino te da la bienvenida con una calida Cumbia.<br></br>
+                            <a href="{% url 'no_hay_pagina_aun' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://www.rbsdirect.com.br/imagesrc/25410312.jpg?w=770" alt="..." />
+                            <h3>Jujuy</h3>
+                            <p class="lead mb-0">Vení a Jujuy a conocer el Macizo de los Siete Colores.<br></br>
+                            <a href="{% url 'no_hay_pagina_aun' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <img class="img-fluid rounded-circle mb-3" src="https://tolkeyenpatagonia.com/wp-content/uploads/2023/01/Perito-Moreno.jpg" alt="..." />
+                            <h3>Santa Cruz</h3>
+                            <p class="lead mb-0">Camina por el glaciar Perito Moreno y vivi una experiencia única.<br></br>
+                            <a href="{% url 'no_hay_pagina_aun' %}">+Info</a><br></br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Testimonials-->
+
+        <!-- Footer-->
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="{% url 'about' %}">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="{% url 'no_hay_pagina_aun' %}">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="{% url 'no_hay_pagina_aun' %}">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="{% url 'no_hay_pagina_aun' %}">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="{% url 'no_hay_pagina_aun' %}"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="{% url 'no_hay_pagina_aun' %}"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="{% url 'no_hay_pagina_aun' %}"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
